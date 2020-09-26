@@ -78,20 +78,29 @@ open class CardSliderViewController: UIViewController, UIScrollViewDelegate {
 		collectionView.isPagingEnabled = true
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.delaysContentTouches = false
+        
+        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem  = logoutBarButtonItem
 	}
 	
 	open override var title: String? {
 		didSet {
 			titleLabel?.text = title
+            titleLabel?.textColor = UIColor.green
 		}
 	}
 	
 	open override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		titleLabel.text = title
+        titleLabel?.textColor = UIColor.green
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: nil)
 		self.collectionView.collectionViewLayout.invalidateLayout()
 		self.collectionView.layoutIfNeeded()
 		self.prepareFirstCard()
+        
+        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem  = logoutBarButtonItem
 	}
 	
 	private func prepareFirstCard() {

@@ -18,9 +18,10 @@ struct Item:CardSliderItem {
 }
 
 class ViewController: UIViewController, CardSliderDataSource {
-   
     
-    var data = [Item]()
+    
+    var remoteData:ArrayData?
+    var cardData = [Item]()
     @IBOutlet weak var button: UIButton!
     
     @IBAction func alert(_ sender: Any) {
@@ -30,43 +31,67 @@ class ViewController: UIViewController, CardSliderDataSource {
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        data.append(Item(image: UIImage(named: "wall")!,
-                         rating: nil,
-                         title: "Hello World!!!",
-                         subtitle: "Hello",
-                         description: "Hey theere what's up?"))
+        getCardData()
         
-        data.append(Item(image: UIImage(named: "wall2")!,
-                         rating: nil,
-                         title: "Hello World!!!",
-                         subtitle: "Hello",
-                         description: "Hey theere what's up?"))
-        data.append(Item(image: UIImage(named: "wall3")!,
-                         rating: nil,
-                         title: "Hello World!!!",
-                         subtitle: "Hello",
-                         description: "Hey theere what's up?"))
-        data.append(Item(image: UIImage(named: "wall4")!,
-                         rating: nil,
-                         title: "Hello World!!!",
-                         subtitle: "Hello",
-                         description: "Hey theere what's up?"))
-        
-        
-      
     }
-
+    
+    func setUp() {
+        
+    }
+    
+    // return the card index
     func item(for index: Int) -> CardSliderItem {
-        return data[index]
+        return cardData[index]
     }
     
+    // return the size of the data
     func numberOfItems() -> Int {
-        return data.count
+        return cardData.count
     }
     
-
+    // MARK: - Fetching Data from API
+    fileprivate func getCardData() {
+        let jsonUrl = "https://gist.githubusercontent.com/anishbajpai014/d482191cb4fff429333c5ec64b38c197/raw/b11f56c3177a9ddc6649288c80a004e7df41e3b9/HiringTask.json"
+        guard let url = URL(string: jsonUrl) else
+        { return }
+        URLSession.shared.dataTask(with: url) { (data,response,error) in
+            
+            // Normalize invalid json data
+            if let data = data {
+                guard let stringRepresentation = String(data: data, encoding: .utf8) else { return }
+                let validJSONString = stringRepresentation.dropFirst()
+                print(validJSONString)
+                let de = validJSONString.data(using: .utf8)
+                //Success
+                do {
+                    self.remoteData = try JSONDecoder().decode(ArrayData.self, from: de!)
+                    //print(self.remoteData.count)
+                } catch let jsonError {
+                    print("Failure!",jsonError)
+                }
+                
+            }
+            //ERROR
+            if let error = error {
+                print("Failure!",error)
+                return
+            }
+        }.resume()
+    }
+    
+    
+    func normalizeJSON(data: Data) -> Data? {
+        guard let stringRepresentation = String(data: data, encoding: .utf8) else { return nil }
+        
+        let validJSONString = stringRepresentation.dropFirst()
+        print(validJSONString)
+        return validJSONString.data(using: .utf8)
+    }
+    
 }
 

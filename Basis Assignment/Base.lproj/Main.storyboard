@@ -16,29 +16,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7N-Kp-dEp">
-                                <rect key="frame" x="184" y="433" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwC-Up-0M5">
+                                <rect key="frame" x="117" y="290" width="188" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="KGs-uC-kFj"/>
-                                    <constraint firstAttribute="height" constant="30" id="y4i-E2-vDt"/>
+                                    <constraint firstAttribute="height" constant="40" id="BRa-bO-vPD"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="NoI-f4-W5C"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <size key="titleShadowOffset" width="2" height="2"/>
+                                <state key="normal" title="Demo One">
+                                    <color key="titleColor" red="1" green="0.99998790029999995" blue="0.99999219179999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleShadowColor" systemColor="systemGreenColor"/>
+                                </state>
                                 <connections>
-                                    <action selector="alert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OVf-R8-Kdd"/>
+                                    <action selector="alert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TF1-ZF-OYY"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7N-Kp-dEp">
+                                <rect key="frame" x="117" y="417" width="188" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="B82-kM-BQe"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="qW0-Hk-cE4"/>
+                                </constraints>
+                                <size key="titleShadowOffset" width="2" height="2"/>
+                                <state key="normal" title="Demo two">
+                                    <color key="titleColor" red="1" green="0.99998790029999995" blue="0.99999219179999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleShadowColor" systemColor="systemGreenColor"/>
+                                </state>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="z7N-Kp-dEp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="389" id="6Cf-31-mvf"/>
-                            <constraint firstItem="z7N-Kp-dEp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="184" id="R8c-B4-EUO"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="z7N-Kp-dEp" secondAttribute="trailing" constant="184" id="bt3-5a-G3d"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cwC-Up-0M5" secondAttribute="trailing" constant="109" id="7qS-kK-0Mm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="z7N-Kp-dEp" secondAttribute="trailing" constant="109" id="Eb2-TP-bWv"/>
+                            <constraint firstItem="cwC-Up-0M5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="117" id="MJs-gZ-qwg"/>
+                            <constraint firstItem="z7N-Kp-dEp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="117" id="bMO-Pv-wMv"/>
+                            <constraint firstItem="cwC-Up-0M5" firstAttribute="topMargin" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="254" id="bnT-AE-dXg"/>
+                            <constraint firstItem="z7N-Kp-dEp" firstAttribute="top" secondItem="cwC-Up-0M5" secondAttribute="bottom" constant="87" id="i6Z-Ux-oMs"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="button" destination="z7N-Kp-dEp" id="wDi-Qb-bIF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -48,6 +66,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

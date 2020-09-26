@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+
+struct ArrayData:Decodable {
+    var data: [CardData]
+}
+
+struct CardData:Decodable {
+    var id: String?
+    var text: String?
+}
