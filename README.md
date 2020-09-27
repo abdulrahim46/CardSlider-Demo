@@ -14,10 +14,10 @@
  pod init
  pod install
  ```
- you're good to go now.
+ you're good to go now install and run the build.
  
 ## Demo
-Select ypur preferrable device then Buiild and run the current scheme.
+Select your preferrable device then Buiild and run the current scheme.
 
 After successfully launching you'll see an initial screen with button - Demo One and Demo Two.
 Press any one of it. Press any one of it. 
