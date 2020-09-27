@@ -20,14 +20,16 @@ struct Item:CardSliderItem {
 
 class ViewController: UIViewController, CardSliderDataSource {
     
+    @IBOutlet weak var noDataView: UIView!
     var remoteData:ArrayData?
     var cardData = [Item]()
-    @IBOutlet weak var button: UIButton!
-
+    @IBOutlet weak var demoTwoButton: UIButton!
+    @IBOutlet weak var demoOneButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
-        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: Notification.Name("refresh"), object: nil)
+        noDataView.isHidden = true
     }
     
     // Setting up the data
@@ -43,7 +45,7 @@ class ViewController: UIViewController, CardSliderDataSource {
     }
     
     // CardSliderItem for the card at given index, counting from the top.
-     func item(for index: Int) -> CardSliderItem {
+    func item(for index: Int) -> CardSliderItem {
         return cardData[index]
     }
     
@@ -69,30 +71,34 @@ class ViewController: UIViewController, CardSliderDataSource {
     
     // MARK: - Fetching Data from API
     @objc fileprivate func getData() {
-//        if remoteData != nil {
-//            remoteData?.data.removeAll()
-//            remoteData?.data.index(before: 1)
-//            //self.item(for:4)
-//        }
         let jsonUrl = "https://gist.githubusercontent.com/anishbajpai014/d482191cb4fff429333c5ec64b38c197/raw/b11f56c3177a9ddc6649288c80a004e7df41e3b9/HiringTask.json"
         guard let url = URL(string: jsonUrl) else
         { return }
         URLSession.shared.dataTask(with: url) { (data,response,error) in
-            
             // Normalize invalid json data
             if let data = data {
                 guard let stringRepresentation = String(data: data, encoding: .utf8) else { return }
                 let validJSONString = stringRepresentation.dropFirst()
                 print(validJSONString)
-                let de = validJSONString.data(using: .utf8)
+                guard let de = validJSONString.data(using: .utf8) else { return }
                 //Success
                 do {
-                    self.remoteData = try JSONDecoder().decode(ArrayData.self, from: de!)
-                    self.setUp()
+                    self.remoteData = try JSONDecoder().decode(ArrayData.self, from: de)
+                    DispatchQueue.main.async {
+                        self.setUp()
+                    }
                 } catch let jsonError {
+                    self.alertDialog()
                     print("Failure!",jsonError)
                 }
                 
+            } else {
+                DispatchQueue.main.async {
+                    self.noDataView.isHidden = false
+                    self.demoOneButton.isHidden = true
+                    self.demoTwoButton.isHidden = true
+                    print("Data not found!")
+                }
             }
             //ERROR
             if let error = error {
@@ -100,6 +106,12 @@ class ViewController: UIViewController, CardSliderDataSource {
                 return
             }
         }.resume()
+    }
+    
+    func alertDialog() {
+        let alert = UIAlertController(title: "Error", message: "Opps! something went wrong.", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

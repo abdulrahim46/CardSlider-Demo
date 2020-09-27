@@ -33,18 +33,20 @@ class DemoTwoViewController: UIViewController, iCarouselDataSource {
                                 height: 400)
     }
     
+    // return numbers of items
     func numberOfItems(in carousel: iCarousel) -> Int {
         return remoteData?.data.count ?? 0
     }
     
+    // setup the carousel as per your need
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/1.4, height: 300))
         view.backgroundColor = .systemGreen
         
-//        let imageView = UIImageView(frame: view.bounds)
-//        view.addSubview(imageView)
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.image = UIImage(named: "wall2")
+        //        let imageView = UIImageView(frame: view.bounds)
+        //        view.addSubview(imageView)
+        //        imageView.contentMode = .scaleAspectFit
+        //        imageView.image = UIImage(named: "wall2")
         var count = 0
         let label = UILabel(frame: view.bounds)
         view.addSubview(label)
@@ -54,10 +56,7 @@ class DemoTwoViewController: UIViewController, iCarouselDataSource {
         for _ in 0..<(remoteData?.data.count ?? 0) {
             label.text = remoteData?.data[count].text //not showing data
             count += 1
-            print(count)
         }
-        //label.text = remoteData?.data[0].text
-        
         return view
     }
     
@@ -85,16 +84,24 @@ class DemoTwoViewController: UIViewController, iCarouselDataSource {
                     }
                     
                 } catch let jsonError {
+                    self.alertDialog()
                     print("Failure!",jsonError)
                 }
                 
             }
             //ERROR
             if let error = error {
+                self.alertDialog()
                 print("Failure!",error)
                 return
             }
         }.resume()
+    }
+    
+    func alertDialog() {
+        let alert = UIAlertController(title: "Error", message: "Opps! something went wrong.", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

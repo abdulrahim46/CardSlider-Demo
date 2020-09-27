@@ -17,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92Z-gf-dSW" userLabel="header view">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6TR-w8-Hpx">
-                                        <rect key="frame" x="15" y="15" width="80" height="29"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <rect key="frame" x="15" y="15" width="80" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qou-XK-d1T">
-                                        <rect key="frame" x="145" y="14" width="50" height="30"/>
+                                        <rect key="frame" x="145" y="21" width="50" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Qur-k8-6xv"/>
                                             <constraint firstAttribute="width" constant="50" id="rgT-rs-Qju"/>
@@ -36,7 +36,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dh9-AW-nC8">
-                                        <rect key="frame" x="270" y="15" width="35" height="29"/>
+                                        <rect key="frame" x="270" y="15" width="35" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="KQd-t4-1Mj"/>
                                         </constraints>
@@ -58,7 +58,7 @@
                                 </constraints>
                             </view>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jWQ-Kq-YtS" userLabel="collection view">
-                                <rect key="frame" x="0.0" y="59" width="320" height="413.5"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="406.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewLayout key="collectionViewLayout" id="6VY-PS-kjF" customClass="CardsLayout" customModule="CardSlider" customModuleProvider="target">
                                     <connections>

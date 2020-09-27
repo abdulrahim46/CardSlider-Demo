@@ -54,7 +54,7 @@ open class CardSliderViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var refreshView: UIButton!
     
     @IBAction func refreshAction(_ sender: Any) {
-        NotificationCenter.default.post(name: Notification.Name("refresh"), object: nil)
+       // NotificationCenter.default.post(name: Notification.Name("refresh"), object: nil)
     }
     /// Instantiate CardSliderViewController.
 	///
@@ -86,6 +86,7 @@ open class CardSliderViewController: UIViewController, UIScrollViewDelegate {
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.delaysContentTouches = false
         labelCount.isHidden = true
+        refreshView.isHidden = true
 	}
 	
 //    open override var count:String? {
