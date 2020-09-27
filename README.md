@@ -4,8 +4,11 @@
  ## Installation
  After taking a pull or downloading the zip, open it in xcode.
  Use the package manager 
+ ```bash
  [pod]('pod 'CardSlider'
- [pod] 'iCarousel'') 
+ [pod] 'iCarousel'')
+ ```
+ 
  if you need to install podfiles.
  
 ## Demo
