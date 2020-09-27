@@ -32,6 +32,7 @@ Press any one of it. Press any one of it.
 ## Framework Used
 CardSlider for sliding effect and scrolling through to different cards and modify some files to our need.
 iCarousel for second Demo carsousel effect.
+I didn't used any network library for fetching network request just the Apple native URLSession Class from Fondation framework but I would prefer Alamofire over it.
 
 
 
