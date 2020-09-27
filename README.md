@@ -5,7 +5,7 @@
  After taking a pull or downloading the zip, open it in xcode.
  Check the pod and you will find two pod there
  ```bash
- pod 'pod 'CardSlider'
+ pod 'CardSlider'
  pod 'iCarousel'
  ```
  Setting up pod
