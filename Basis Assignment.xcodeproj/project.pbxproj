@@ -17,8 +17,6 @@
 		1A565E7D251F164A001268FC /* Basis_AssignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A565E7C251F164A001268FC /* Basis_AssignmentUITests.swift */; };
 		1A565E90251F17EF001268FC /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A565E8F251F17EF001268FC /* CardData.swift */; };
 		1A565EA4251F1B6D001268FC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1A565EA3251F1B6D001268FC /* README.md */; };
-		1A79706F251FD5CB003BFF46 /* CenteredCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79706E251FD5CB003BFF46 /* CenteredCollectionViewFlowLayout.swift */; };
-		1A797075251FD75D003BFF46 /* CardDataCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A797074251FD75D003BFF46 /* CardDataCollectionView.swift */; };
 		1A79707D251FD8D1003BFF46 /* DemoTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79707C251FD8D1003BFF46 /* DemoTwoViewController.swift */; };
 		3A086335123F6CC2186B7D8C /* Pods_Basis_AssignmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B26DA8C8D44396D8DCA383E /* Pods_Basis_AssignmentTests.framework */; };
 		C6778C06B29E807629173AD2 /* Pods_Basis_Assignment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B68810D6B6E02890A199073 /* Pods_Basis_Assignment.framework */; };
@@ -61,8 +59,6 @@
 		1A565E7E251F164A001268FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A565E8F251F17EF001268FC /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		1A565EA3251F1B6D001268FC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "Basis Assignment/README.md"; sourceTree = "<group>"; };
-		1A79706E251FD5CB003BFF46 /* CenteredCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		1A797074251FD75D003BFF46 /* CardDataCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataCollectionView.swift; sourceTree = "<group>"; };
 		1A79707C251FD8D1003BFF46 /* DemoTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTwoViewController.swift; sourceTree = "<group>"; };
 		2B68810D6B6E02890A199073 /* Pods_Basis_Assignment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basis_Assignment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F08EA3A03958BA8058E1DA0 /* Pods-Basis Assignment-Basis AssignmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basis Assignment-Basis AssignmentUITests.debug.xcconfig"; path = "Target Support Files/Pods-Basis Assignment-Basis AssignmentUITests/Pods-Basis Assignment-Basis AssignmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,7 +128,6 @@
 				1A565E8E251F17D4001268FC /* Model */,
 				1A565E8D251F17A6001268FC /* ViewControllers */,
 				1A565E9A251F1A47001268FC /* Utility */,
-				1A565E5C251F1648001268FC /* SceneDelegate.swift */,
 				1A565E63251F1649001268FC /* Assets.xcassets */,
 				1A565E65251F1649001268FC /* LaunchScreen.storyboard */,
 				1A565E68251F1649001268FC /* Info.plist */,
@@ -162,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				1A565E5E251F1648001268FC /* ViewController.swift */,
-				1A797074251FD75D003BFF46 /* CardDataCollectionView.swift */,
 				1A79707C251FD8D1003BFF46 /* DemoTwoViewController.swift */,
 			);
 			path = ViewControllers;
@@ -179,7 +173,7 @@
 		1A565E9A251F1A47001268FC /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				1A79706E251FD5CB003BFF46 /* CenteredCollectionViewFlowLayout.swift */,
+				1A565E5C251F1648001268FC /* SceneDelegate.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -448,11 +442,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A79707D251FD8D1003BFF46 /* DemoTwoViewController.swift in Sources */,
-				1A797075251FD75D003BFF46 /* CardDataCollectionView.swift in Sources */,
 				1A565E5F251F1648001268FC /* ViewController.swift in Sources */,
 				1A565E90251F17EF001268FC /* CardData.swift in Sources */,
 				1A565E5B251F1648001268FC /* AppDelegate.swift in Sources */,
-				1A79706F251FD5CB003BFF46 /* CenteredCollectionViewFlowLayout.swift in Sources */,
 				1A565E5D251F1648001268FC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -52,7 +52,7 @@ class DemoTwoViewController: UIViewController, iCarouselDataSource {
         label.font = .italicSystemFont(ofSize: 20)
         label.numberOfLines = 5
         for _ in 0..<(remoteData?.data.count ?? 0) {
-            label.text = remoteData?.data[count].text
+            label.text = remoteData?.data[count].text //not showing data
             count += 1
             print(count)
         }
