@@ -70,7 +70,7 @@ class ViewController: UIViewController, CardSliderDataSource {
     }
     
     // MARK: - Fetching Data from API
-    @objc fileprivate func getData() {
+    func getData() {
         let jsonUrl = "https://gist.githubusercontent.com/anishbajpai014/d482191cb4fff429333c5ec64b38c197/raw/b11f56c3177a9ddc6649288c80a004e7df41e3b9/HiringTask.json"
         guard let url = URL(string: jsonUrl) else
         { return }
