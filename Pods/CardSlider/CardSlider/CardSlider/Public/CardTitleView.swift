@@ -4,11 +4,14 @@ import UIKit
 struct CardTitle: Equatable {
 	let title: String?
 	let subtitle: String?
+    let count: String?
 }
 
 class CardTitleView: UIView {
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var subtitleLabel: UILabel!
+    @IBOutlet weak var labelCount: UILabel!
+    @IBOutlet weak var refreshView: UIButton!
 	private var firstTitle: CardTitle?
 	private var secondTitle: CardTitle?
 	private weak var firstSnapshot: UIView?
@@ -22,12 +25,14 @@ class CardTitleView: UIView {
 		secondTitle = nil
 		titleLabel.alpha = 1
 		subtitleLabel.alpha = 1
+        labelCount.alpha = 1
 	}
 	
 	func set(title: CardTitle) {
 		reset()
 		titleLabel.text = title.title
 		subtitleLabel.text = title.subtitle
+        labelCount.text = title.count
 	}
 	
 	func transition(between firstTitle: CardTitle, secondTitle: CardTitle, progress: CGFloat) {
@@ -43,12 +48,14 @@ class CardTitleView: UIView {
 		
 		titleLabel.text = firstTitle.title ?? " " // retaining vertical space when there's no text
 		subtitleLabel.text = firstTitle.subtitle ?? " "
+        labelCount.text = firstTitle.count ?? " "
 		layoutIfNeeded()
 		let firstSnapshot = renderSnapshot()
 		self.firstSnapshot = firstSnapshot
 		
 		titleLabel.text = secondTitle.title ?? " "
 		subtitleLabel.text = secondTitle.subtitle ?? " "
+        labelCount.text = firstTitle.count ?? " "
 		layoutIfNeeded()
 		let secondSnapshot = renderSnapshot()
 		self.secondSnapshot = secondSnapshot
@@ -61,6 +68,7 @@ class CardTitleView: UIView {
 		secondSnapshot.alpha = 0
 		titleLabel.alpha = 0
 		subtitleLabel.alpha = 0
+        labelCount.alpha = 0
 		
 		animator?.stopAnimation(true)
 		animator = UIViewPropertyAnimator(duration: 1, curve: .linear, animations: { [bounds] in

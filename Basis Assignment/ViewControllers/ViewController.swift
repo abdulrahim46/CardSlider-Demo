@@ -10,6 +10,7 @@ import CardSlider
 
 
 struct Item:CardSliderItem {
+    var countLabel: String?
     var image: UIImage
     var rating: Int?
     var title: String
@@ -19,10 +20,37 @@ struct Item:CardSliderItem {
 
 class ViewController: UIViewController, CardSliderDataSource {
     
-    
     var remoteData:ArrayData?
     var cardData = [Item]()
     @IBOutlet weak var button: UIButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getData()
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: Notification.Name("refresh"), object: nil)
+    }
+    
+    // Setting up the data
+    func setUp() {
+        var item = Item(countLabel:"", image: UIImage(named: "wall")!, title: "",subtitle:"",description: "")
+        for i in 0..<(remoteData?.data.count ?? 0) {
+            item.title = remoteData?.data[i].text ?? ""
+            item.description = remoteData?.data[i].text ?? ""
+            item.subtitle = remoteData?.data[i].id ?? ""
+            item.countLabel = remoteData?.data[i].id ?? "0"
+            cardData.append(item)
+        }
+    }
+    
+    // CardSliderItem for the card at given index, counting from the top.
+     func item(for index: Int) -> CardSliderItem {
+        return cardData[index]
+    }
+    
+    // Total number of cards.
+    func numberOfItems() -> Int {
+        return self.remoteData?.data.count ?? 0
+    }
     
     @IBAction func alert(_ sender: Any) {
         // Present the Card Slider
@@ -32,30 +60,20 @@ class ViewController: UIViewController, CardSliderDataSource {
         present(vc, animated: true)
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        getCardData()
-        
-    }
-    
-    func setUp() {
-        
-    }
-    
-    // return the card index
-    func item(for index: Int) -> CardSliderItem {
-        return cardData[index]
-    }
-    
-    // return the size of the data
-    func numberOfItems() -> Int {
-        return cardData.count
+    @IBAction func demoTwo(_ sender: Any) {
+        // Present the second Demo View
+        let vc = DemoTwoViewController()
+        vc.title = "Basis"
+        present(vc, animated: true)
     }
     
     // MARK: - Fetching Data from API
-    fileprivate func getCardData() {
+    @objc fileprivate func getData() {
+//        if remoteData != nil {
+//            remoteData?.data.removeAll()
+//            remoteData?.data.index(before: 1)
+//            //self.item(for:4)
+//        }
         let jsonUrl = "https://gist.githubusercontent.com/anishbajpai014/d482191cb4fff429333c5ec64b38c197/raw/b11f56c3177a9ddc6649288c80a004e7df41e3b9/HiringTask.json"
         guard let url = URL(string: jsonUrl) else
         { return }
@@ -70,7 +88,7 @@ class ViewController: UIViewController, CardSliderDataSource {
                 //Success
                 do {
                     self.remoteData = try JSONDecoder().decode(ArrayData.self, from: de!)
-                    //print(self.remoteData.count)
+                    self.setUp()
                 } catch let jsonError {
                     print("Failure!",jsonError)
                 }
@@ -83,15 +101,5 @@ class ViewController: UIViewController, CardSliderDataSource {
             }
         }.resume()
     }
-    
-    
-    func normalizeJSON(data: Data) -> Data? {
-        guard let stringRepresentation = String(data: data, encoding: .utf8) else { return nil }
-        
-        let validJSONString = stringRepresentation.dropFirst()
-        print(validJSONString)
-        return validJSONString.data(using: .utf8)
-    }
-    
 }
 

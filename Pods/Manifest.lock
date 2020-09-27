@@ -1,16 +1,20 @@
 PODS:
   - CardSlider (0.1.0)
+  - iCarousel (1.8.3)
 
 DEPENDENCIES:
   - CardSlider
+  - iCarousel
 
 SPEC REPOS:
   trunk:
     - CardSlider
+    - iCarousel
 
 SPEC CHECKSUMS:
   CardSlider: 0a8f5f17f5a76701771794b07fdaeddc512358c8
+  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
 
-PODFILE CHECKSUM: d30cc1e308752ec4f9d41e51eefa418584d2ae3d
+PODFILE CHECKSUM: cc063e4bc1a50f27d4db16d136324f05efbf3b51
 
 COCOAPODS: 1.9.3

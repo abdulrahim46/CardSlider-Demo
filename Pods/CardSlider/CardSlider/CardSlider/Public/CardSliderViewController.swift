@@ -17,6 +17,9 @@ public protocol CardSliderItem {
 	
 	/// Will be displayed as scrollable text in the expanded view.
 	var description: String? { get }
+    
+    // will display count number
+    var countLabel: String? { get }
 }
 
 public protocol CardSliderDataSource: class {
@@ -47,9 +50,13 @@ open class CardSliderViewController: UIViewController, UIScrollViewDelegate {
 	private weak var openCardCell: UICollectionViewCell?
 	private var animator: UIViewPropertyAnimator?
 	private let cellID = "CardCell"
-	
-	
-	/// Instantiate CardSliderViewController.
+    @IBOutlet weak var labelCount: UILabel!
+    @IBOutlet weak var refreshView: UIButton!
+    
+    @IBAction func refreshAction(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name("refresh"), object: nil)
+    }
+    /// Instantiate CardSliderViewController.
 	///
 	/// - Parameter dataSource: CardSliderDataSource
 	
@@ -78,11 +85,16 @@ open class CardSliderViewController: UIViewController, UIScrollViewDelegate {
 		collectionView.isPagingEnabled = true
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.delaysContentTouches = false
-        
-        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem  = logoutBarButtonItem
+        labelCount.isHidden = true
 	}
 	
+//    open override var count:String? {
+//        didSet {
+//            labelCount.text = count
+//            titleLabel?.textColor = UIColor.green
+//        }
+//    }
+    
 	open override var title: String? {
 		didSet {
 			titleLabel?.text = title
@@ -94,19 +106,16 @@ open class CardSliderViewController: UIViewController, UIScrollViewDelegate {
 		super.viewWillAppear(animated)
 		titleLabel.text = title
         titleLabel?.textColor = UIColor.green
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: nil)
+        labelCount.isHidden = true
 		self.collectionView.collectionViewLayout.invalidateLayout()
 		self.collectionView.layoutIfNeeded()
 		self.prepareFirstCard()
-        
-        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem  = logoutBarButtonItem
 	}
 	
 	private func prepareFirstCard() {
 		guard let layout = collectionView.collectionViewLayout as? CardsLayout else { return }
 		let item = dataSource.item(for: dataSource.numberOfItems() - layout.currentPage - 1)
-		cardTitleView.set(title: CardTitle(title: item.title, subtitle: item.subtitle))
+        cardTitleView.set(title: CardTitle(title: item.title, subtitle: item.subtitle, count: item.countLabel))
 	}
 	
 	// MARK: - Detailed view animations
@@ -155,7 +164,7 @@ open class CardSliderViewController: UIViewController, UIScrollViewDelegate {
 		guard scrollView == collectionView else { return }
 		guard let layout = collectionView.collectionViewLayout as? CardsLayout else { return }
 		let item = dataSource.item(for: dataSource.numberOfItems() - layout.currentPage - 1)
-		cardTitleView.set(title: CardTitle(title: item.title, subtitle: item.subtitle))
+        cardTitleView.set(title: CardTitle(title: item.title, subtitle: item.subtitle, count: item.countLabel))
 	}
 	
 	private func resetCardAnimation() {
@@ -287,8 +296,8 @@ extension CardSliderViewController: CardsLayoutDelegate {
 		let nextItem = dataSource.item(for: dataSource.numberOfItems() - nextIndex - 1)
 		
 		ratingView.rating = (progress > 0.5 ? nextItem : currentItem).rating
-		let currentTitle = CardTitle(title: currentItem.title, subtitle: currentItem.subtitle)
-		let nextTitle = CardTitle(title: nextItem.title, subtitle: nextItem.subtitle)
+        let currentTitle = CardTitle(title: currentItem.title, subtitle: currentItem.subtitle, count: currentItem.countLabel)
+        let nextTitle = CardTitle(title: nextItem.title, subtitle: nextItem.subtitle, count: currentItem.countLabel)
 		cardTitleView.transition(between: currentTitle, secondTitle: nextTitle, progress: progress)
 	}
 }

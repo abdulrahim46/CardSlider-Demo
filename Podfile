@@ -6,6 +6,7 @@ target 'Basis Assignment' do
   use_frameworks!
 
 pod 'CardSlider'
+pod 'iCarousel'
 
   target 'Basis AssignmentTests' do
     inherit! :search_paths
