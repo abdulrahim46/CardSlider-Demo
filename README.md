@@ -1,4 +1,4 @@
-# Basis Card Demo Assignment
+# Swipable Card Demo
  Swipeable Card Views showing data from server
  
  ## Installation
