@@ -34,5 +34,8 @@ CardSlider for sliding effect and scrolling through to different cards and modif
 iCarousel for second Demo carsousel effect.
 I didn't used any network library for fetching network request just the Apple native URLSession Class from Foundation framework but I would prefer Alamofire over it.
 
-
+## Improvements Needs to be done
+- Change the card slider to better one.
+- Need to improve UI of Detail view.
+- Refresh back to index.
 
